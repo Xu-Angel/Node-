@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱音乐</title>
+    <style>
+        .table{
+            width: 500px;
+            margin:50px auto;
+            background: pink;
+        }
+        .table td,.table th{
+            text-align: center;
+            line-height: 25px;
+            font-size:14px;
+        }
+    </style>
+    <script src="js/list.js"></script>
+</head>
+<body>
+<table class="table">
+    <tr>
+        <th>编号</th>
+        <th>歌名</th>
+        <th>歌手</th>
+        <th>操作</th>
+    </tr>
+    {{#each(data)}}
+    <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.title}}</td>
+        <td>{{this.singer}}</td>
+        <td>
+            <a href="javascript:;" onclick="del('{{this.id}}')">删除</a>
+            <a href="javascript:;" onclick='play("{{this.title}}")'>播放</a>
+        </td>
+    </tr>
+    {{/each}}
+    <audio src="" autoplay></audio>
+</table>
+</body>
+</html>

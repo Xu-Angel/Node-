@@ -1,0 +1,10 @@
+const http = require('http')
+const fs = require('fs')
+const server = http.createServer()
+server.on('request', (req, res) => {
+  console.log(req.url)
+  res.setHeader('Conetent-Header', 'text/html;chartset=utf-8')
+  res.write(req.url)
+  res.end()
+})
+server.listen(888)
