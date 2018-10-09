@@ -2,3 +2,10 @@
 Express/fileUpload/node_modules/
 
 Express/musicWeb/node_modules/
+
+*/node_modules/
+*/**/node_modules/
+*/**/**/node_modules/
+*/**/**/**/node_modules/
+*/**/**/**/**/node_modules/
+*/**/*.log
