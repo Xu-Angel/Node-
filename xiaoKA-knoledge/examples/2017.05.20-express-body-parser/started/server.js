@@ -1,13 +1,27 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+var http = require('http');
+var queryString = require('querystring')
+var parsePostBody = function(req, done) {
+  var arr = [];
+  var chunks;
 
-app.use(bodyParser.urlencoded({extended: false}));
+  req.on('data', buff => {
+    arr.push(buff);
+  });
 
-app.get('/test', function (req, res, next) {    
-    // 访问地址为：http://127.0.0.1:3030/test?nick=chyingp
-    // 输出为：nick is chyingp
-    res.end(`nick is ${req.query.nick}`);
+  req.on('end', () => {
+    chunks = Buffer.concat(arr);
+    done(chunks);
+  });
+};
+
+var server = http.createServer(function(req, res) {
+  parsePostBody(req, (chunks) => {
+      console.log(chunks, 'chunks');
+    var body = chunks.toString();
+    body = JSON.parse(body)
+    queryString.parse()
+    res.end(`Your nick is ${body}`)
+  });
 });
 
-app.listen(3030);
+server.listen(3000);

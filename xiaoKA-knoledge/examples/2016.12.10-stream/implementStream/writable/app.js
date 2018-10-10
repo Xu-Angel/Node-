@@ -9,7 +9,7 @@ var util = require('util');
 // }
 // util.inherits(MyWritable, Writable);
 var MyWritable = new Writable({
-	write: function(chunk, encoding, callback){
-		callback();
-	}
+  write: function(chunk, encoding, callback) {
+    callback();
+  }
 });

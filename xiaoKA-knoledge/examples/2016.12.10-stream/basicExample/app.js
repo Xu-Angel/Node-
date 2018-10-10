@@ -1,5 +1,3 @@
-const fs = require('fs');
+const fs = require('fs')
 
-fs.createReadStream('./sample.txt').pipe(process.stdout);
-
-
+fs.createReadStream('./sample.txt').pipe(process.stdout)

@@ -1,14 +1,10 @@
-var fs = require('fs');
+const fs = require('fs')
+const end = () => {
+	process.stdout.write(']')
+}
 
-var onEnd = function(){
-	process.stdout.write(']');	
-};
-
-var fileStream = fs.createReadStream('./sample.txt');
-fileStream.on('end', onEnd)
-
-fileStream.pipe(process.stdout);
-
-process.stdout.write('文件读取完成，文件内容是[');
-
-// 文件读取完成，文件内容是[你好，我是程序猿小卡]
+const fileStream = fs.createReadStream('./sample.txt')
+fileStream.pipe(process.stdout)
+console.log(fileStream, 'fileStream')
+process.stdout.write('file read finished,[')
+fileStream.on('end', end)

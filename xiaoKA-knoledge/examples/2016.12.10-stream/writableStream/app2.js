@@ -1,7 +1,7 @@
-var fs = require('fs');
-var content = 'hello world';
-var filepath = './sample.txt';
+const fs = require('fs')
+const content = 'i am writeStream'
+const path = './sample.txt'
 
-var writeStram = fs.createWriteStream(filepath);
-writeStram.write(content);
-writeStram.end();
+const writeStram = fs.createWriteStream(path)
+writeStram.write(content)
+writeStram.end()

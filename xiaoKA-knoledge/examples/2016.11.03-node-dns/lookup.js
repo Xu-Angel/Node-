@@ -19,3 +19,4 @@ dns.lookup('id.chyingp.com', function(err, address, family){
 	if(err) throw err;
 	console.log('例子C: ' + address);
 });
+// 18.10.10
