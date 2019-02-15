@@ -1,0 +1,29 @@
+{
+  "name": "webspider-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nisenco/webSpider-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nisenco/webSpider-demo/issues"
+  },
+  "homepage": "https://github.com/Nisenco/webSpider-demo#readme",
+  "description": "",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "iconv-lite": "^0.4.24",
+    "mongoose": "^5.4.11",
+    "mysql": "^2.16.0",
+    "npm": "^6.7.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "superagent": "^4.1.0"
+  }
+}
