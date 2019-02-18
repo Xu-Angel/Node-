@@ -24,6 +24,17 @@ function download(url) {
 function storeImg(data, page) {
   page = page || 1
   if (data) {
+    if (!fs.existsSync('./imgs')) {//查看是否存在这个文件夹
+      fs.mkdir('./imgs')
+      console.warn('%c创建目录完成')
+    }
+    // fs.access('./imgs', (err) => {
+    //   console.error(err ? '目录/文件权限不存在' : '%c目录存在,可以进行读写')
+    //   if (err) {
+    //     fs.mkdir('./imgs')
+    //     console.warn('%c创建目录完成')
+    //   }
+    // });
     var $ = cheerio.load(data);
     $('img').each(function(i, elem) {
       var imgSrc = $(this).attr('src');
