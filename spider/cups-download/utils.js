@@ -6,7 +6,7 @@ const DELAY_TIME = 0.35
 // 最大并发数，尽量不要设置得过大
 const MAX_CONNECT_COUNT = 64
 // 单任务爬取数
-const MAX_NUMBER = 100
+const MAX_NUMBER = 200
 
 const uuid = () => {
   var s = [];
