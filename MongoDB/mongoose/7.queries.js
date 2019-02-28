@@ -35,24 +35,38 @@ query.exec(function (err, person) {
 // ! - 2-1 不穿入callback - 链式调用
 // With a JSON doc
 Person.
-  find({
-    occupation: /host/,
-    'name.last': 'Ghost',
-    age: { $gt: 17, $lt: 66 },
-    likes: { $in: ['vaporizing', 'talking'] }
-  }).
-  limit(10).
-  sort({ occupation: -1 }).
-  select({ name: 1, occupation: 1 }).
-  exec(callback);
+find({
+  occupation: /host/,
+  'name.last': 'Ghost',
+  age: { $gt: 17, $lt: 66 },
+  likes: { $in: ['vaporizing', 'talking'] }
+}).
+limit(10).
+sort({ occupation: -1 }).
+select({ name: 1, occupation: 1 }).
+exec(callback);
 
-// Using query builder
+// ! 方法操作符 Using query builder
 Person.
-  find({ occupation: /host/ }).
-  where('name.last').equals('Ghost').
-  where('age').gt(17).lt(66).
-  where('likes').in(['vaporizing', 'talking']).
-  limit(10).
-  sort('-occupation').
-  select('name occupation').
-  exec(callback);
+find({ occupation: /host/ }).
+where('name.last').equals('Ghost').
+where('age').gt(17).lt(66).
+where('likes').in(['vaporizing', 'talking']).
+limit(10).
+sort('-occupation').
+select('name occupation').
+exec(callback);
+
+// ! 原始操作符
+Person.find({ age: { $lt: 1000 } }).exec() // 在person表查找小于1000岁的人
+
+// ! Documents  转JS Obj 
+// mongoose自己封装的一个对象，并且这个对象会对数据进行实时查询以保证其符合预定义的model。所以添加其它model中没有的属性时是无法添加成功的。
+
+// 要想添加成功有2种方法：
+
+// 查询时添加lean，
+// Model.findOne({}).lean();
+// Model.findOne({lean:true},function(err,result){});
+// Model.findOne({}).lean().exec(function(err,result){});
+// 将查询结果转为object，查询结果result.toObject();

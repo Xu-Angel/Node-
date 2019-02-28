@@ -24,8 +24,20 @@ const blogSchema = new Schema({
   meta: {
     votes: Number,
     favs: Number
-  }
+  },
+  bio: {type: String, match: /[a-z]/} // 正则
 })
+
+// ! setter 
+blogSchema.path('title').set(v => v.trim())
+
+// ! 中间件 middleware
+blogSchema.pre('save', next => {
+  // do some thing
+  notify(this.get('email'))
+  next()
+})
+
 // 建立之后还想添加字段？ 使用Schema.add
 // !index 索引设置在  Schema 中定义索引。索引分字段级别和schema级别， 复合索引 需要在 schema 级别定义。
 

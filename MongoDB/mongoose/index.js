@@ -6,7 +6,7 @@ db.on('error', () => {
 db.on('open', () => {
   console.log('sussess');
 })
-
+//  mongoose.disconnect()  == mongodb官方关闭client
 const PersonSchema = new mongoose.Schema({
   name:String
 })
