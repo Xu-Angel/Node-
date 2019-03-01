@@ -46,7 +46,7 @@ const options = {
 mongoose.connect(uri, options);
 
 // ! 回调
-mongoose.connect(uri, options, function(error) {
+mongoose.connect(uri, options, function (error) {
   // Check error in initial connection. There is no 2nd param to the callback.
 });
 

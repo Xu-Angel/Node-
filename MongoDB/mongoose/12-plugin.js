@@ -1,11 +1,10 @@
-
 /* 
 Schema 是可拓展的，你可以用打包好的功能拓展你的 Schema。这是一个很实用的特性。
 */
 /* 试想下数据库里有很多个 collection，我们需要对它们都添加 记录“最后修改”的功能。使用插件，我们很容易做到。 创建一次插件，然后应用到每个 Schema 就好了。 */
 // ! 局部插件
 // lastMod.js
-module.exports = exports = function lastModifiedPlugin (schema, options) {
+module.exports = exports = function lastModifiedPlugin(schema, options) {
   schema.add({ lastMod: Date });
 
   schema.pre('save', function (next) {

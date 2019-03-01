@@ -28,3 +28,5 @@ Tank.findById(id, function (err, tank) {
 Tank.update({ _id: id }, { $set: { size: 'large' } }, canlback)
 
 // ! 确实需要返回文档 findAndUpdate/Remove 系列静态方法查找并返回最多1个文档
+
+//  ! 删除 document.remove([callback])
