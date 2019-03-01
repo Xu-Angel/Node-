@@ -9,7 +9,7 @@
 
 [mongoose驱动仓库](https://github.com/Automattic/mongoose)
 
-[mongoose驱动Api例子]([https://github.com/Automattic/mongoose](https://github.com/Automattic/mongoose/blob/master/examples/README.md))
+[mongoose驱动Api例子](https://github.com/Automattic/mongoose)
 
 [mongoodb驱动仓库](https://github.com/mongodb/node-mongodb-native)
 
