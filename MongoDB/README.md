@@ -1,4 +1,4 @@
-
+> https://www.imooc.com/learn/295
 ## 章节 3-1 mongoDB的基本操作之数据写入和查询
 - show dbs : 查看有几个数据库
 - use 数据库名 : 选择某个数据库
@@ -111,11 +111,3 @@
 - 每次查询，只能指定一个$text查询
 - $text查询不能出现在$nor查询中
 - 查询中如果包含了$text，那么hint不再起作用
-
-
-## 尾声
-敲不动了，不敲了。除了是因为MongoDB的版本变更，还有就是课程讲的都是一些基础，建议现在学习按着官网来就好了，下面有相关的教程地址以及其他童鞋的学习总结<br>
-[1、易百教程](https://www.yiibai.com/mongodb/mongodb_quick_guide.html)<br>
-[2、菜鸟教程](http://www.runoob.com/mongodb/mongodb-tutorial.html)<br>
-[3、课程所有的学习笔记](http://www.lrshuai.top/atc/show/67)<br><br>
-
