@@ -1,59 +1,82 @@
-// 加载express模块和path模块
-var express = require('express')
-// 加载路径处理模块
-var path = require('path')
-// 加载快速建模工具
-var mongoose = require('mongoose')
-// 默认端口为3000，当然也可以命令行输入指定端口号：PORT=4000 node app.js
-var port = process.env.PORT || 3000
-// 加载解析模块，对post请求的请求体进行解析
-var bodyParser = require('body-parser');
-// 加载数据状态保存模块
-var cookieParser=require('cookie-parser');
-var cookieSession=require('cookie-session');
-// 加载错误输出模块
-var morgan = require('morgan')
+var express = require('express'),					          	// 加载express模块
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    logger = require('morgan'),
+    fs = require('fs'),       							          // 文件读写模块
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),  				    // session依赖cookie模块
+    mongoStore = require('connect-mongo')(session),		// 用来对session进行持久化
+    http = require('http'),
 
-// 启动一个web服务器
-var app = express()
-// 连接本地的数据库
-mongoose.connect('mongodb://localhost:27017/imooc', { useNewUrlParser: true })
+    port = process.env.PORT || 3000,                  // 设置监听端口
+    app = express(),                                  // 生成Web服务器实例
 
-// 对请求内容进行解析
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ limit: '1mb' }));
-// 使用以下模块保存用户登录状态
-app.use(cookieParser())
-app.use(cookieSession({
-  secret: 'imooc'
-}))
-// 上传海报处理模块
-app.use(require('connect-multiparty')())
+    dbUrl = 'mongodb://127.0.0.1/douban';             // 连接本地数据库及数据库名称
 
-// 引入时间处理模块
+mongoose.Promise = global.Promise; 
+mongoose.connect(dbUrl);
+
+// models loading
+var models_path = __dirname + '/app/models';           // 加载模型所在路径
+
+// 路径加载函数，加载各模型的路径,所以可以直接通过mongoose.model加载各模型 这样即使模型路径改变也无需更改路径
+var walk = function(path) {
+  fs
+    .readdirSync(path)
+    .forEach(function(file) {
+      var newPath = path + '/' + file;
+      var stat = fs.statSync(newPath);
+      // 如果是文件
+      if (stat.isFile()) {
+        if (/(.*)\.(js|coffee)/.test(file)) {
+          require(newPath);
+        }
+      // 如果是文件夹则继续遍历
+      }else if (stat.isDirectory()) {
+        walk(newPath);
+      }
+    });
+};
+walk(models_path);
+
+app.set('views','./app/views/pages');                   // 视图文件根目录
+app.set('view engine','pug');                          // 设置模板引擎
+app.use(express.static(path.join(__dirname,'public'))); // 设置静态文件目录
 app.locals.moment = require('moment');
-// 设置视图的根目录
-app.set('views', './app/views/pages')
-// 设置默认的模板引擎
-app.set('view engine', 'jade')
 
-// 加载routes这个文件，同时将app这个对象赋值进去
-require('./config/routes')(app)
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// 生产环境配置
-if('development' === app.get('env')) {
-  app.set('showStackError', true) // 显示错误信息
-  app.use(morgan(':method :url :status')) // 显示请求方式、地址和状态
-  app.locals.pretty = true  // 使源代码格式化显示
-  mongoose.set('debug', true) // 显示数据库错误信息
+// parse application/json
+app.use(bodyParser.json());
+
+app.use(session({
+	secret:'douban',
+	resave: false,
+	saveUninitialized: true,
+	// 使用mongo对session进行持久化，将session存储进数据库中
+	store: new mongoStore({
+		url: dbUrl,
+		collection: 'sessions'
+	})
+}));
+
+var env = process.env.NODE_ENV || 'development';
+
+if ('development' === env) {
+	// 在屏幕上讲信息打印出来
+	app.set('showStackError',true);
+	// 显示的信息
+	app.use(logger(':method :url :status'));
+	// 源码格式化，不要压缩
+	app.locals.pretty = true;
+	// mongoose.set('debug',true);
 }
 
-// 监听端口
-app.listen(port)
-// 引入时间插件
-app.locals.moment = require('moment')
-// 设置静态文件绝对路径
-app.use(express.static(path.join(__dirname,'public')))
-// 打印日志
-console.log('imooc started on port ' + port)
 
+require('./route/router')(app);                     // 路由控制
+
+app.listen(port);	                                  // 服务器监听端口
+
+console.log('douban started on port:' + port);
