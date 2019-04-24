@@ -54,7 +54,7 @@ console.log(datauri);
 
 ## github demo地址
 
-demo地址请[点击这里](https://github.com/chyingp/nodejs-learning-guide/tree/master/examples/2016.11.15-base64-datauri)，或者
+demo地址请[点击这里](./examples/2016.11.15-base64-datauri)，或者
 
 ```bash
 git clone https://github.com/chyingp/nodejs-learning-guide.git

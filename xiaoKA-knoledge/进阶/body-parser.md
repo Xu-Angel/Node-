@@ -39,8 +39,6 @@ chyingp
 
 ## 一、处理不同类型请求体
 
-为了方便读者测试，以下例子均包含服务端、客户端代码，完整代码可在[笔者github](https://github.com/chyingp/nodejs-learning-guide/tree/master/examples/2017.05.20-express-body-parser)上找到。
-
 ### 解析text/plain
 
 客户端请求的代码如下，采用默认编码，不对请求体进行压缩。请求体类型为`text/plain`。
