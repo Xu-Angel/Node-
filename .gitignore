@@ -12,3 +12,5 @@ Express/musicWeb/node_modules/
 
 spider/cups-download/img/*.jpg
 spider/cups-download/img/*.png
+
+\.idea/
