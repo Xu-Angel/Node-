@@ -24,7 +24,7 @@
     "express": "^4.16.4",
     "highcharts": "^5.0.10",
     "iconv-lite": "^0.4.24",
-    "mongoose": "^5.4.11",
+    "mongoose": "^5.7.5",
     "mysql": "^2.16.0",
     "node-xlsx": "^0.14.1",
     "npm": "^6.7.0",
