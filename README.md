@@ -42,11 +42,4 @@
 
 - advanced文件夹相对进阶的demo
 
-### Koa
-
-....
-
-### TO-DO
-
-- [ ] Koa
-
+### Redis
