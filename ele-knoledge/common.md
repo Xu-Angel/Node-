@@ -47,7 +47,7 @@ JavaScript 的类型判断其实是个挺折磨人的话题, 不然也不会有 
 面试写代码的话, 可以通过 `如何编写一个 json 对象的拷贝函数` 等类似的问题来考察对引用的了解.
 不过笔者偶尔会有恶趣味, 喜欢先问应聘者对于 `==` 的 `===` 的区别的了解. 然后再问 `[1] == [1]` 是 `true` 还是 `false`. 如果基础不好的同学可能会被自己对于 `==` 和 `===` 的结论影响然后得出错误的结论.
 
-注①: 对于技术好的, 希望能直接反驳这个问题本身是有问题的, 比如讲清楚 JavaScript 中没有引用传递只是传递引用. 参见 [Is JavaScript a pass-by-reference or pass-by-value language?](http://stackoverflow.com/questions/518000/is-javascript-a-pass-by-reference-or-pass-by-value-language). 虽然说是复杂版, 但是这些知识对于 3年经验的同学真的应该是很简单的问题了.
+注①: 对于技术好的, 希望能直接反驳这个问题本身是有问题的, 比如讲清楚 JavaScript 中没有引用传递只是传递引用. 参见 [Is JavaScript a pass-by-reference or pass-by-value language?](http://stackoverflow.com/questions/518000/is-javascript-a-pass-by-reference-or-pass-by-value-language). **虽然说是复杂版, 但是这些知识对于 3年经验的同学真的应该是很简单的问题了**.
 
 另外如果简历中有写 C++, 则必问 `指针与引用的区别`.
 
