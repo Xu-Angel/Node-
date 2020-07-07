@@ -27,7 +27,7 @@
     "mongoose": "^5.4.11",
     "mysql": "^2.16.0",
     "node-xlsx": "^0.14.1",
-    "npm": "^6.7.0",
+    "npm": "^6.14.6",
     "puppeteer": "^1.12.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
